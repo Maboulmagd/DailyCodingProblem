@@ -1,0 +1,1 @@
+This serves as a repository for [Daily Coding Problem](https://www.dailycodingproblem.com/) exercises.
