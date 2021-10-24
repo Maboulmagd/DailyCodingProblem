@@ -48,7 +48,11 @@ void helper(const string& s, const vector<int>& char_value, int& ways, vector<st
         helper(s.substr(i + 1), char_value, ways, decoded_strings, curr_str);
 
         // Backtrack
-        curr_str.pop_back();
+        int x = curr_substr.length();
+        while (x > 0) {
+            curr_str.pop_back();
+            --x;
+        }
     }
 }
 
@@ -123,7 +127,7 @@ TEST(NumDecodings, BasicLCTests) {
     ASSERT_EQ(NumDecodings("111"), 3);
 }
 
-TEST(NumDecodings, Tests) {
+TEST(NumDecodings, AdvancedTests) {
     ASSERT_EQ(NumDecodings("123456789"), 3);
     ASSERT_EQ(NumDecodings("01234506789"), 0);
     ASSERT_EQ(NumDecodings("1234506789"), 0);
