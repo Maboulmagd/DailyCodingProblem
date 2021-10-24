@@ -1,6 +1,13 @@
 //
-// Created by Mo Aboulmagd on 10/18/21.
+// Created by Mo Aboulmagd on 10/17/21.
 //
+
+/*
+ * This problem was asked by Uber.
+ * Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+ * For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+ * Follow-up: what if you can't use division?
+ */
 
 #include "include.h"
 
@@ -11,13 +18,6 @@
 using namespace ::testing;
 
 /*
- * This problem was asked by Uber.
- * Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
- * For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
- * Follow-up: what if you can't use division?
- */
-
-/*
  * The key idea to solve this without using division, is to store the multiplication values from right to left, and then iterate
  * over the array again, but this time from the more natural left to right, while keeping track of the total product.
  */
@@ -25,7 +25,7 @@ using namespace ::testing;
 // Complexity Analysis:
 // Time: O(2 * N) = O(N)
 // Space: O(1)
-vector<int> ProductOfArrayExceptSelf(const vector<int>& nums) {
+vector<int> ProductOfArrayExceptSelf(vector<int> nums) {
     const int nums_size = static_cast<int>(nums.size());
     vector<int> result(nums_size, 1);
 

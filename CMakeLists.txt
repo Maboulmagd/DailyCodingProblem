@@ -17,7 +17,13 @@ enable_testing()
 add_executable(
         DailyCodingProblem
         two_sum.cpp
-        product_of_array_except_self.cpp)
+        product_of_array_except_self.cpp
+        first_missing_positive.cpp
+        serialize_and_deserialize_binary_tree.cpp
+        car_and_cdr.cpp
+        xor_linked_list.cpp
+        decode_ways.cpp
+        unival_tree.cpp)
 
 add_subdirectory(include)
 #target_link_libraries(DailyCodingProblem PUBLIC include)

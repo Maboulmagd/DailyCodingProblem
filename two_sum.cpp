@@ -1,11 +1,6 @@
 //
-// Created by Mo Aboulmagd on 10/17/21.
+// Created by Mo Aboulmagd on 10/16/21.
 //
-
-#include "include.h"
-
-// TODO Try to move this to be part of include
-#include <gtest/gtest.h>
 
 /*
  * This problem was recently asked by Google.
@@ -13,6 +8,11 @@
  * For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
  * Bonus: Can you do this in one pass?
  */
+
+#include "include.h"
+
+// TODO Try to move this to be part of include
+#include <gtest/gtest.h>
 
 /*
  * Brute force way is just a nested loop, iterating over all pairs, we can do better in just 1 pass if we use an unordered_set and
@@ -23,7 +23,7 @@
 // Complexity Analysis:
 // Time: O(N)
 // Space: O(N)
-bool TwoSum(const vector<int>& nums, const int target) {
+bool TwoSum(vector<int> nums, int target) {
     bool found = false;
 
     unordered_set<int> set;
