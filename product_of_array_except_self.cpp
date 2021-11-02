@@ -11,12 +11,6 @@
 
 #include "include.h"
 
-// TODO Try to move these to be part of the include header-only file
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
-
-using namespace ::testing;
-
 /*
  * The key idea to solve this without using division, is to store the multiplication values from right to left, and then iterate
  * over the array again, but this time from the more natural left to right, while keeping track of the total product.
@@ -46,7 +40,7 @@ vector<int> ProductOfArrayExceptSelf(vector<int> nums) {
 }
 
 // Demonstrate some basic assertions.
-TEST(ProductOfArrayExceptSelf, BasicLCTests) {
+TEST(ProductOfArrayExceptSelf, BasicTests) {
     ASSERT_THAT(ProductOfArrayExceptSelf({1,2,3,4}), ElementsAre(24,12,8,6));
     ASSERT_THAT(ProductOfArrayExceptSelf({-1,1,0,-3,3}), ElementsAre(0,0,9,0,0));
     ASSERT_THAT(ProductOfArrayExceptSelf({2,3,0,0}), ElementsAre(0,0,0,0));

@@ -11,9 +11,6 @@
 
 #include "include.h"
 
-// TODO Try to move this to be part of include
-#include <gtest/gtest.h>
-
 /*
  * Brute force way is just a nested loop, iterating over all pairs, we can do better in just 1 pass if we use an unordered_set and
  * keep track of which integers we've seen so far, and on the current integer, check if we have seen remainder in the set. If so, we can
@@ -41,7 +38,7 @@ bool TwoSum(vector<int> nums, int target) {
 }
 
 // Demonstrate some basic assertions.
-TEST(TwoSum, BasicLCTests) {
+TEST(TwoSum, BasicTests) {
     ASSERT_EQ(TwoSum({2,7,11,15}, 9), true);
     ASSERT_EQ(TwoSum({3,2,4}, 6), true);
     ASSERT_EQ(TwoSum({3,3}, 6), true);

@@ -2,5 +2,17 @@ project(include)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_library(include INTERFACE "include.h")
-target_include_directories(include INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+include(FetchContent)
+FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/16f637fbf4ffc3f7a01fa4eceb7906634565242f.zip)
+
+# TODO For Windows: Prevent overriding the parent project's compiler/linker settings, but how?
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+add_library(include include.h include.cpp)
+target_include_directories(include PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(include gtest_main gmock_main)
+
+#include(GoogleTest)
+#gtest_discover_tests(include)

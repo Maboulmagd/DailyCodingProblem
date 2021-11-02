@@ -12,8 +12,6 @@
 
 #include "include.h"
 
-#include <gtest/gtest.h>
-
 /*
  * Brute force way is to just use recursion (backtracking if you want to visualize the decoded strings), without memoizing any of the function calls.
  * It works correctly, but will time out for large test cases.
@@ -117,7 +115,7 @@ int NumDecodings(string s) {
 }
 
 // Demonstrate some basic assertions.
-TEST(NumDecodings, BasicLCTests) {
+TEST(NumDecodings, BasicTests) {
     ASSERT_EQ(NumDecodings("12"), 2);
     ASSERT_EQ(NumDecodings("226"), 3);
     ASSERT_EQ(NumDecodings("0"), 0);
