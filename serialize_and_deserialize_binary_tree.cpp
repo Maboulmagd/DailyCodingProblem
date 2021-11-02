@@ -21,6 +21,17 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 #include "include.h"
 
+/*
+ * Key idea is to mimic how LeetCode serializes/deserializes binary trees.
+ * The seen_null bool in the deserialize function is a way to keep track of when we should be popping the parent off of the queue.
+ */
+
+// Complexity Analysis:
+// Time: O(N) for the serialize function, where N is however many nodes there would be in that tree, if it were complete.
+//       O(N) for the deserialize function, where N is the length of the input string.
+// Space: O(N) for the serialize function, since we use a queue, which will have N/2 nodes for the last level of the tree.
+//        O(N) for the deserialize function, for the same reason as above.
+
 // Encodes a tree to a single string.
 string serialize(unique_ptr<TreeNode> root) {
     if (root == nullptr) {

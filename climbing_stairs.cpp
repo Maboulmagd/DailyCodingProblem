@@ -20,6 +20,15 @@
 
 #include "include.h"
 
+/*
+ * Brute force way is to just use recursion, without memoizing any of the function calls.
+ * It works correctly, but will time out for large test cases.
+ */
+
+// Complexity Analysis:
+// Time: O(N) as that is roughly how many recursive calls we make.
+// Space: O(N) for function calls placed on the stack as well as for the memo map.
+
 int helper(const int n, const vector<int>& steps_set, unordered_map<int, int>& memo) {
     if (n == 0 || n == 1) {
         return 1;

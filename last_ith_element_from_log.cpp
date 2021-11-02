@@ -13,6 +13,15 @@
 
 #include "include.h"
 
+/*
+ * Since we know the maximum amount of orders that we'll be asked to keep track of at any given point in time, this problem becomes an excellent
+ * candidate for the use of a circular buffer/queue data structure.
+ */
+
+// Complexity Analysis:
+// Time: O(1) for Record and GetLast functions.
+// Space: O(N) for the buffer, where N is the maximum amount of orders that we'll be keeping track of, at any given moment in time.
+
 struct Order final {
     string order_id;
     // Add other fields
