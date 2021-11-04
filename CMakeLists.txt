@@ -21,7 +21,8 @@ add_executable(
         estimate_pi.cpp
         random_number_from_stream.cpp
         last_ith_element_from_log.cpp
-        longest_absolute_file_path.cpp)
+        longest_absolute_file_path.cpp
+        sliding_window_maximum.cpp paint_house.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)

@@ -23,12 +23,16 @@ using namespace ::testing;
 // Definition for a binary tree node.
  struct TreeNode {
      int val;// TODO Try using std::variant/template here?
-     unique_ptr<TreeNode> left;
-     unique_ptr<TreeNode> right;
+     TreeNode* left;
+     TreeNode* right;
      TreeNode() : val(0), left(nullptr), right(nullptr) {}
      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-     TreeNode(int x, unique_ptr<TreeNode> left, unique_ptr<TreeNode> right) : val(x), left(move(left)), right(move(right)) {}
-     friend bool operator==(const unique_ptr<TreeNode>& a, const unique_ptr<TreeNode>& b);
+     TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
+     //bool operator==(const TreeNode* b);
+     friend bool trees_equal(const TreeNode* lhs, const TreeNode* rhs);// NOTE: I highly suggest against overloading operator== for pointers. It has very surprising semantics.
  };
+
+string serialize(TreeNode* root);
+TreeNode* deserialize(string data);
 
 // Definition for a linked list node.

@@ -32,161 +32,47 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 // Space: O(N) for the serialize function, since we use a queue, which will have N/2 nodes for the last level of the tree.
 //        O(N) for the deserialize function, for the same reason as above.
 
-// Encodes a tree to a single string.
-string serialize(unique_ptr<TreeNode> root) {
-    if (root == nullptr) {
-        return "";
+class SerializeAndDeserializeTreeTest : public ::testing::Test {
+protected:
+    explicit SerializeAndDeserializeTreeTest() {
+        // [1,2,3,null,null,4,5]
+        TreeNode* root = new TreeNode(1);
+        root->left = new TreeNode(2);
+        root->right = new TreeNode(3);
+        root->right->left = new TreeNode(4);
+        root->right->right = new TreeNode(5);
+
+        trees_.push_back(root);
+
+        //[1,-2,3,null,4,5,6,null,7,8,9]
+        TreeNode* root2 = new TreeNode(1);
+        root2->left = new TreeNode(-2);
+        root2->right = new TreeNode(3);
+        root2->left->right = new TreeNode(4);
+        root2->right->left = new TreeNode(5);
+        root2->right->right = new TreeNode(6);
+        root2->left->right->right = new TreeNode(7);
+        root2->right->left->left = new TreeNode(8);
+        root2->right->left->right = new TreeNode(9);
+
+        trees_.push_back(root2);
     }
 
-    string s;
+    ~SerializeAndDeserializeTreeTest() {
+        // TODO Delete trees correctly!
 
-    queue<TreeNode*> q;
-    q.push(root.get());
 
-    while (!q.empty()) {
-        // Think of this as a way to keep track of the current level we are on in the level-order traversal
-        const int size = static_cast<int>(q.size());
-
-        for (int i = 0; i < size; ++i) {
-            const auto curr_node = q.front();
-            q.pop();
-
-            if (curr_node == nullptr) {
-                s += "null,";
-                continue;
-            }
-
-            // Serialize
-            s += to_string(curr_node->val) + ",";
-
-            if (curr_node->left) { q.push(curr_node->left.get()); }
-            else if (!curr_node->left) { q.push(nullptr); }
-
-            if (curr_node->right) { q.push(curr_node->right.get()); }
-            else if (!curr_node->right) { q.push(nullptr); }
-        }
     }
 
-    s.pop_back(); // Erase last comma
-    while (s.length() > 6 &&
-          (s.substr(s.length() - 5) == ",null" || s.substr(s.length() - 5) == ",NULL")) {// Erase extra "null"s
-        s.erase(s.length() - 5);
-    }
+    vector<TreeNode*> trees_;
+};
 
-    return s;
+TEST_F(SerializeAndDeserializeTreeTest, SerializeTests) {
+    ASSERT_EQ(serialize(trees_[0]), "1,2,3,null,null,4,5");
+    ASSERT_EQ(serialize(trees_[1]), "1,-2,3,null,4,5,6,null,7,8,9");
 }
 
-// Decodes your encoded data to tree.
-unique_ptr<TreeNode> deserialize(string data) {
-    // Remove all whitespace from input string first
-
-    unique_ptr<TreeNode> root = nullptr;
-
-    queue<TreeNode*> q;
-    bool seen_null = false;
-
-    const int len = static_cast<int>(data.length());
-    for (int i = 0; i < len; ++i) {
-        if (data[i] == '-' || (data[i] >= 48 && data[i] <= 57)) {// Current character is '-' OR a digit, so its part of a value of a node
-            bool negate = false;
-            if (data[i] == '-') {
-                negate = true;
-                ++i;
-            }
-
-            int val = 0;
-            while (data[i] >= 48 && data[i] <= 57) {
-                val *= 10;
-                val += data[i] - '0';
-                ++i;
-            }
-            if (negate) {
-                val *= -1;
-            }
-
-            // Now we have the complete value, so we can create the new TreeNode
-            unique_ptr<TreeNode> new_node = make_unique<TreeNode>(val);
-            if (root == nullptr) {// This should only ever execute once, moving ownership to a "global" unique_ptr.
-                root = move(new_node);
-                q.push(root.get());
-                continue;
-            }
-            q.push(new_node.get());
-
-            TreeNode* curr_parent = q.front();
-            if (curr_parent->left == nullptr && !seen_null) {
-                curr_parent->left = move(new_node);
-                seen_null = true;
-            }
-            else {
-                curr_parent->right = move(new_node);
-
-                // Now that both children have been set, we can safely discard the ptr to curr_parent
-                q.pop();
-                seen_null = false;
-            }
-        }
-
-        else if (data.substr(i, 4) == "null" || data.substr(i, 4) == "NULL") {
-            if (seen_null) {
-                q.pop();
-                seen_null = false;
-            }
-
-            else {
-                seen_null = true;
-            }
-
-            i += 4;
-        }
-    }
-
-    return root;
-}
-
-TEST(SerializeAndDeserializeTree, SerializeTests) {
-    unique_ptr<TreeNode> root = make_unique<TreeNode>(1);
-    root->left = make_unique<TreeNode>(2);
-    root->right = make_unique<TreeNode>(3);
-    root->right->left = make_unique<TreeNode>(4);
-    root->right->right = make_unique<TreeNode>(5);
-
-    ASSERT_THAT(serialize(move(root)), "1,2,3,null,null,4,5");
-
-    //[1,-2,3,null,4,5,6,null,7,8,9]
-    unique_ptr<TreeNode> root2 = make_unique<TreeNode>(1);
-    root2->left = make_unique<TreeNode>(-2);
-    root2->right = make_unique<TreeNode>(3);
-    root2->left->right = make_unique<TreeNode>(4);
-    root2->right->left = make_unique<TreeNode>(5);
-    root2->right->right = make_unique<TreeNode>(6);
-    root2->left->right->right = make_unique<TreeNode>(7);
-    root2->right->left->left = make_unique<TreeNode>(8);
-    root2->right->left->right = make_unique<TreeNode>(9);
-
-    ASSERT_EQ(serialize(move(root2)), "1,-2,3,null,4,5,6,null,7,8,9");
-}
-
-TEST(SerializeAndDeserializeTree, DeserializeTests) {
-    // [1,2,3,null,null,4,5]
-    unique_ptr<TreeNode> root = make_unique<TreeNode>(1);
-    root->left = make_unique<TreeNode>(2);
-    root->right = make_unique<TreeNode>(3);
-    root->right->left = make_unique<TreeNode>(4);
-    root->right->right = make_unique<TreeNode>(5);
-
-    ASSERT_EQ(deserialize("1,2,3,null,null,4,5"), root);
-
-    //[1,-2,3,null,4,5,6,null,7,8,9]
-    unique_ptr<TreeNode> root2 = make_unique<TreeNode>(1);
-    root2->left = make_unique<TreeNode>(-2);
-    root2->right = make_unique<TreeNode>(3);
-    root2->left->right = make_unique<TreeNode>(4);
-    root2->right->left = make_unique<TreeNode>(5);
-    root2->right->right = make_unique<TreeNode>(6);
-    root2->left->right->right = make_unique<TreeNode>(7);
-    root2->right->left->left = make_unique<TreeNode>(8);
-    root2->right->left->right = make_unique<TreeNode>(9);
-
-    ASSERT_EQ(deserialize("1,-2,3,null,4,5,6,null,7,8,9"), root2);
+TEST_F(SerializeAndDeserializeTreeTest, DeserializeTests) {
+    ASSERT_TRUE(trees_equal(deserialize("1,2,3,null,null,4,5"), trees_[0]));
+    ASSERT_TRUE(trees_equal(deserialize("1,-2,3,null,4,5,6,null,7,8,9"), trees_[1]));
 }
