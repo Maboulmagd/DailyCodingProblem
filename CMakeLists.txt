@@ -22,7 +22,10 @@ add_executable(
         random_number_from_stream.cpp
         last_ith_element_from_log.cpp
         longest_absolute_file_path.cpp
-        sliding_window_maximum.cpp paint_house.cpp)
+        sliding_window_maximum.cpp
+        paint_house.cpp
+        intersection_of_two_linked_lists.cpp
+        meeting_rooms.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)

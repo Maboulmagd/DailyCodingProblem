@@ -36,3 +36,8 @@ string serialize(TreeNode* root);
 TreeNode* deserialize(string data);
 
 // Definition for a linked list node.
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
