@@ -52,23 +52,22 @@ deque<deque<string>> Helper(string s, const unordered_set<string>& word_dict, un
     return memo[s];
 }
 
-vector<string> WordBreakII(string s, vector<string> word_dict) {
+vector<vector<string>> WordBreakII(string s, vector<string> word_dict) {
     unordered_set<string> dict(word_dict.cbegin(), word_dict.cend());
     unordered_map<string, deque<deque<string>>> memo;// This memo stores all possible breaks for a string
 
     Helper(s, dict, memo);
 
-    vector<string> res;
+    vector<vector<string>> res;
+    res.reserve(memo[s].size());
 
     for (const deque<string>& sentence : memo[s]) {
-        string sub_res;
+        vector<string> sub_res;
 
         for (const string& word : sentence) {
-            sub_res += word + " ";
+            sub_res.push_back(word);
         }
 
-        // Get rid of last space...
-        sub_res.pop_back();
         res.emplace_back(sub_res);
     }
 
@@ -78,12 +77,12 @@ vector<string> WordBreakII(string s, vector<string> word_dict) {
 TEST(WordBreakII, BasicTests) {
     string s("catsanddog");
     vector<string> word_dict{"cat", "cats", "and", "sand", "dog"};
-    vector<string> res = { "cat sand dog", "cats and dog" };
+    vector<vector<string>> res = { { "cat", "sand", "dog" }, { "cats", "and", "dog" } };
     ASSERT_EQ(WordBreakII(s, word_dict), res);
 
     s = "pineapplepenapple";
     word_dict = {"apple", "pen", "applepen", "pine", "pineapple"};
-    res = { "pine apple pen apple", "pine applepen apple", "pineapple pen apple" };
+    res = { { "pine", "apple", "pen", "apple" }, { "pine", "applepen", "apple" }, { "pineapple", "pen", "apple" } };
     ASSERT_EQ(WordBreakII(s, word_dict), res);
 
     s = "catsandog";
@@ -94,11 +93,11 @@ TEST(WordBreakII, BasicTests) {
     // Basic tests from problem description
     s = "thequickbrownfox";
     word_dict = {"quick", "brown", "the", "fox"};
-    res = { "the quick brown fox" };
+    res = { { "the", "quick", "brown", "fox" } };
     ASSERT_EQ(WordBreakII(s, word_dict), res);
 
     s = "bedbathandbeyond";
     word_dict = { "bed", "bath", "bedbath", "and", "beyond" };
-    res = { "bed bath and beyond", "bedbath and beyond" };
+    res = { { "bed", "bath", "and", "beyond" }, { "bedbath", "and", "beyond" } };
     ASSERT_EQ(WordBreakII(s, word_dict), res);
 }
