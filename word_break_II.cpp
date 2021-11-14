@@ -15,6 +15,12 @@
 
 #include "include.h"
 
+// Complexity Analysis:
+// Time: O(W) for converting the vector of words dictionary to an unordered_set +
+//       O(N^2) in the case of s = "aaaaa", and dict = { "a", "aa", "aaa", "aaaa", "aaaaa" }
+//       + apparently O(2^N) for chaining strings back together?
+// Space: O(W) + O(N^2) for dp unordered_map and recursion function call stack + O(N^2)?
+
 deque<deque<string>> Helper(string s, const unordered_set<string>& word_dict, unordered_map<string, deque<deque<string>>>& memo) {
     if (s.empty()) {
         return { {} };

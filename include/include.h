@@ -12,6 +12,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <queue>
+#include <stack>
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
