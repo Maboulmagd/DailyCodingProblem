@@ -25,7 +25,15 @@ add_executable(
         sliding_window_maximum.cpp
         paint_house.cpp
         intersection_of_two_linked_lists.cpp
-        meeting_rooms.cpp)
+        meeting_rooms.cpp
+        word_break_II.cpp
+        shortest_possible_path_in_a_maze.cpp
+        lockable_tree.cpp
+        regular_expression_matching.cpp
+        remove_nth_node_from_end_of_list.cpp
+        valid_parentheses.cpp
+        text_justification.cpp
+        encode_and_decode_string.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)
