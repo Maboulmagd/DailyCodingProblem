@@ -73,6 +73,6 @@ TEST_F(SerializeAndDeserializeTreeTest, SerializeTests) {
 }
 
 TEST_F(SerializeAndDeserializeTreeTest, DeserializeTests) {
-    ASSERT_TRUE(trees_equal(deserialize("1,2,3,null,null,4,5"), trees_[0]));
-    ASSERT_TRUE(trees_equal(deserialize("1,-2,3,null,4,5,6,null,7,8,9"), trees_[1]));
+    ASSERT_TRUE(TreesEqual(deserialize("1,2,3,null,null,4,5"), trees_[0]));
+    ASSERT_TRUE(TreesEqual(deserialize("1,-2,3,null,4,5,6,null,7,8,9"), trees_[1]));
 }

@@ -127,8 +127,18 @@ protected:
     }
 
     ~IntersectionOfTwoLinkedListsTest() {
-        // TODO Delete lists correctly!
+        for (ListNode* list : lists_a) {
+            DeleteList(list);
+        }
 
+        // Disconnecting lists
+        lists_b[0]->next->next->next = nullptr;
+        lists_b[1]->next = nullptr;
+        lists_b[3]->next->next = nullptr;
+
+        for (ListNode* list : lists_b) {
+            DeleteList(list);
+        }
     }
 
     vector<ListNode*> lists_a;

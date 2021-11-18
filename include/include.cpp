@@ -123,3 +123,15 @@ TreeNode* deserialize(string data) {
 
     return root;
 }
+
+void DeleteList(ListNode* curr) {
+    while (curr) {
+        ListNode* nextt = curr->next;
+        delete curr;
+        curr = nullptr;
+        curr = nextt;
+    }
+
+    curr = nullptr;
+    assert(curr == nullptr);
+}

@@ -38,6 +38,8 @@ TreeNode* deserialize(string data);
 // Definition for a linked list node.
 struct ListNode {
     int val;
-    unique_ptr<ListNode> next;
+    ListNode* next;
     ListNode(int x) : val(x), next(nullptr) {}
+
+    friend void DeleteList(ListNode* curr);
 };
