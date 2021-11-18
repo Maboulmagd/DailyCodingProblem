@@ -33,7 +33,11 @@ add_executable(
         remove_nth_node_from_end_of_list.cpp
         valid_parentheses.cpp
         text_justification.cpp
-        encode_and_decode_string.cpp)
+        encode_and_decode_string.cpp
+        trapping_rain_water.cpp
+        edit_distance.cpp
+        currency_arbitrage.cpp
+        find_median_from_data_stream.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)

@@ -5,11 +5,11 @@
 #include "include.h"
 
 // NOTE This is recursive ... TODO Change to iterative
-bool trees_equal(const TreeNode* lhs, const TreeNode* rhs) {
+bool TreesEqual(const TreeNode* lhs, const TreeNode* rhs) {
     if (!lhs && !rhs) { return true; }
     else if (!lhs && rhs) { return false; }
     else if (lhs && !rhs) { return false; }
-    return lhs->val == rhs->val && trees_equal(lhs->left, rhs->left);
+    return lhs->val == rhs->val && TreesEqual(lhs->left, rhs->left);
 }
 
 // Encodes a tree to a single string.

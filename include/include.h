@@ -29,7 +29,7 @@ using namespace ::testing;
      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
      TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
      //bool operator==(const TreeNode* b);
-     friend bool trees_equal(const TreeNode* lhs, const TreeNode* rhs);// NOTE: I highly suggest against overloading operator== for pointers. It has very surprising semantics.
+     friend bool TreesEqual(const TreeNode* lhs, const TreeNode* rhs);// NOTE: I highly suggest against overloading operator== for pointers. It has very surprising semantics.
  };
 
 string serialize(TreeNode* root);
@@ -38,6 +38,6 @@ TreeNode* deserialize(string data);
 // Definition for a linked list node.
 struct ListNode {
     int val;
-    ListNode* next;
+    unique_ptr<ListNode> next;
     ListNode(int x) : val(x), next(nullptr) {}
 };
