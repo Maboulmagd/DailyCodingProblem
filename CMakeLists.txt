@@ -3,8 +3,7 @@ project(DailyCodingProblem)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(
-        DailyCodingProblem
+add_executable(DailyCodingProblem
         two_sum.cpp
         product_of_array_except_self.cpp
         first_missing_positive.cpp
