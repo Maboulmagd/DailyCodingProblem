@@ -37,7 +37,12 @@ add_executable(
         trapping_rain_water.cpp
         edit_distance.cpp
         currency_arbitrage.cpp
-        find_median_from_data_stream.cpp)
+        find_median_from_data_stream.cpp
+        minimum_insertion_steps_to_make_a_string_palindrome.cpp
+        dutch_national_flag.cpp
+        second_maximum_node_in_a_bst.cpp
+        subsets.cpp
+        n_queens.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)

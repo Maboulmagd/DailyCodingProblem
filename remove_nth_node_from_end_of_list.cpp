@@ -109,9 +109,9 @@ TEST_F(RemoveNthFromEndOfListTest, List2Test1) {
 }
 
 TEST_F(RemoveNthFromEndOfListTest, List2Test2) {
-    EXPECT_THAT(RemoveNthFromEndOfList(&lists[2], 2), lists[2]);
+    ASSERT_THAT(RemoveNthFromEndOfList(&lists[2], 2), lists[2]);
 }
 
 TEST_F(RemoveNthFromEndOfListTest, List2Test3) {
-    EXPECT_THAT(RemoveNthFromEndOfList(&lists[2], 5), lists[2]->next);
+    ASSERT_THAT(RemoveNthFromEndOfList(&lists[2], 5), lists[2]->next);
 }
