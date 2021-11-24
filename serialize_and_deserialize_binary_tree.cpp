@@ -59,9 +59,9 @@ protected:
     }
 
     ~SerializeAndDeserializeTreeTest() {
-        // TODO Delete trees correctly!
-
-
+        for (auto& tree : trees_) {
+            DeleteTree(tree);
+        }
     }
 
     vector<TreeNode*> trees_;

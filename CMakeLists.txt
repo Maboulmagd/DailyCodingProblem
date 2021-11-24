@@ -41,7 +41,8 @@ add_executable(DailyCodingProblem
         dutch_national_flag.cpp
         second_maximum_node_in_a_bst.cpp
         subsets.cpp
-        n_queens.cpp)
+        n_queens.cpp
+        game_of_life.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)

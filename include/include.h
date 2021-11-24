@@ -28,8 +28,17 @@ using namespace ::testing;
      TreeNode() : val(0), left(nullptr), right(nullptr) {}
      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
      TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
+     ~TreeNode() {
+//         if (left) {
+//             delete left;
+//         }
+//         if (right) {
+//             delete right;
+//         }
+     }
      //bool operator==(const TreeNode* b);
      friend bool TreesEqual(const TreeNode* lhs, const TreeNode* rhs);// NOTE: I highly suggest against overloading operator== for pointers. It has very surprising semantics.
+     friend void DeleteTree(TreeNode*& tree);
  };
 
 string serialize(TreeNode* root);
@@ -41,5 +50,5 @@ struct ListNode {
     ListNode* next;
     ListNode(int x) : val(x), next(nullptr) {}
 
-    friend void DeleteList(ListNode* curr);
+    friend void DeleteList(ListNode*& curr);
 };

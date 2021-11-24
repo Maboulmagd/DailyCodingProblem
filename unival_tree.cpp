@@ -75,6 +75,8 @@ int CountUnivalTree(TreeNode* root) {
 }
 
 TEST(UnivalTree, CountUnivalTreeTests) {
+    // TODO: We don't delete any of these trees!
+
     ASSERT_EQ(CountUnivalTree(deserialize("1,1,1,1,1,null,1")), 6);
     ASSERT_EQ(CountUnivalTree(deserialize("2,2,2,5,2")), 3);
     ASSERT_EQ(CountUnivalTree(deserialize("5,1,5,5,5,null,5")), 4);

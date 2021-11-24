@@ -12,6 +12,25 @@ bool TreesEqual(const TreeNode* lhs, const TreeNode* rhs) {
     return lhs->val == rhs->val && TreesEqual(lhs->left, rhs->left);
 }
 
+void DeleteTree(TreeNode*& tree) {
+    if (tree == nullptr) { return; }
+    queue<TreeNode*> q;
+    q.push(tree);
+
+    while (!q.empty()) {
+        TreeNode* curr = q.front();
+        q.pop();
+
+        if (curr->left != nullptr) { q.push(curr->left); }
+        if (curr->right != nullptr) { q.push(curr->right); }
+
+        delete curr;
+        curr = nullptr;
+
+        assert(curr == nullptr);
+    }
+}
+
 // Encodes a tree to a single string.
 string serialize(TreeNode* root) {
     if (root == nullptr) {
@@ -124,11 +143,13 @@ TreeNode* deserialize(string data) {
     return root;
 }
 
-void DeleteList(ListNode* curr) {
+void DeleteList(ListNode*& curr) {
     while (curr) {
         ListNode* nextt = curr->next;
         delete curr;
         curr = nullptr;
+        assert(curr == nullptr);
+
         curr = nextt;
     }
 
