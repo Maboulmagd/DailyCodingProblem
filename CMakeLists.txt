@@ -42,7 +42,8 @@ add_executable(DailyCodingProblem
         second_maximum_node_in_a_bst.cpp
         subsets.cpp
         n_queens.cpp
-        game_of_life.cpp)
+        game_of_life.cpp
+        single_number_II.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)
