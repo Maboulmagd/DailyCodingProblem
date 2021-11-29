@@ -43,7 +43,11 @@ add_executable(DailyCodingProblem
         subsets.cpp
         n_queens.cpp
         game_of_life.cpp
-        single_number_II.cpp)
+        single_number_II.cpp
+        reconstruct_itinerary.cpp
+        subset_sum.cpp
+        max_stack.cpp
+        count_array_inversions.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)
