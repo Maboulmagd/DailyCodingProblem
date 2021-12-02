@@ -47,12 +47,13 @@ add_executable(DailyCodingProblem
         reconstruct_itinerary.cpp
         subset_sum.cpp
         max_stack.cpp
-        count_array_inversions.cpp)
+        count_array_inversions.cpp
+        implement_rand5_and_rand7.cpp
+        longest_palindromic_substring.cpp
+        best_time_to_buy_and_sell_stock.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)
 
 #include(GoogleTest)
 #gtest_discover_tests(DailyCodingProblem)
-
-

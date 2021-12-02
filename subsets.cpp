@@ -45,7 +45,7 @@ vector<vector<int>> Subsets(vector<int> nums) {
 }
 
 TEST(Subsets, Test) {
-    vector<vector<int>> res = { {}, {1}, {1,2}, {1,2,3}, {1,3}, {2}, {2,3}, {3}};
+    vector<vector<int>> res = { {}, {1}, {1,2}, {1,2,3}, {1,3}, {2}, {2,3}, {3} };
 
-    ASSERT_THAT(res, UnorderedElementsAreArray(Subsets({1,2,3})));
+    ASSERT_THAT(Subsets({1,2,3}), UnorderedElementsAreArray(res));
 }
