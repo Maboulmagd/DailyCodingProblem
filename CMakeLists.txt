@@ -50,7 +50,27 @@ add_executable(DailyCodingProblem
         count_array_inversions.cpp
         implement_rand5_and_rand7.cpp
         longest_palindromic_substring.cpp
-        best_time_to_buy_and_sell_stock.cpp)
+        best_time_to_buy_and_sell_stock.cpp
+        construct_binary_tree_from_preorder_and_inorder_traversal.cpp
+        maximum_subarray.cpp
+        evaluate_expression_binary_tree.cpp
+        shuffle_deck_of_cards.cpp
+        lru_cache.cpp
+        implement_queue_using_stacks.cpp
+        sudoku_solver.cpp
+        url_shortener.cpp
+        graph_coloring.cpp
+        word_break_III.cpp
+        search_in_rotated_sorted_array.cpp
+        file_synchronization.cpp
+        partition_equal_subset_sum.cpp
+        implement_integer_exponentiation.cpp
+        unique_paths.cpp
+        word_search.cpp
+        knight_tour.cpp
+        spiral_matrix.cpp
+        make_a_fair_coin_from_an_unfair_coin.cpp
+        lfu_cache.cpp)
 
 add_subdirectory(include)
 target_link_libraries(DailyCodingProblem include)
