@@ -74,14 +74,34 @@ int CountUnivalTree(TreeNode* root) {
     return count;
 }
 
-TEST(UnivalTree, CountUnivalTreeTests) {
-    // TODO: We don't delete any of these trees!
+class UnivalTreeTest : public testing::Test {
+protected:
+    explicit UnivalTreeTest() {
+        trees_.push_back(deserialize("1,1,1,1,1,null,1"));
+        trees_.push_back(deserialize("2,2,2,5,2"));
+        trees_.push_back(deserialize("5,1,5,5,5,null,5"));
+        trees_.push_back(deserialize("5,4,5,4,4,null,5"));
 
-    ASSERT_EQ(CountUnivalTree(deserialize("1,1,1,1,1,null,1")), 6);
-    ASSERT_EQ(CountUnivalTree(deserialize("2,2,2,5,2")), 3);
-    ASSERT_EQ(CountUnivalTree(deserialize("5,1,5,5,5,null,5")), 4);
-    ASSERT_EQ(CountUnivalTree(deserialize("5,4,5,4,4,null,5")), 5);
+        // Basic test from problem description
+        trees_.push_back(deserialize("0,1,0,null,null,1,0,1,1"));
+    }
+
+    ~UnivalTreeTest() {
+        for (auto& tree : trees_) {
+            DeleteTree(tree);
+        }
+    }
+
+    vector<TreeNode*> trees_;
+};
+
+TEST_F(UnivalTreeTest, Tests) {
+    ASSERT_EQ(CountUnivalTree(trees_[0]), 6);
+    ASSERT_EQ(CountUnivalTree(trees_[1]), 3);
+    ASSERT_EQ(CountUnivalTree(trees_[2]), 4);
+    ASSERT_EQ(CountUnivalTree(trees_[3]), 5);
 
     // Basic test from problem description
-    ASSERT_EQ(CountUnivalTree(deserialize("0,1,0,null,null,1,0,1,1")), 5);
+    ASSERT_EQ(CountUnivalTree(trees_[4]), 5);
 }
+

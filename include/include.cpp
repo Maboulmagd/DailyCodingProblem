@@ -4,12 +4,45 @@
 
 #include "include.h"
 
-// NOTE This is recursive ... TODO Change to iterative
 bool TreesEqual(const TreeNode* lhs, const TreeNode* rhs) {
-    if (!lhs && !rhs) { return true; }
-    else if (!lhs && rhs) { return false; }
-    else if (lhs && !rhs) { return false; }
-    return lhs->val == rhs->val && TreesEqual(lhs->left, rhs->left);
+    queue<const TreeNode*> tree1_queue;
+    tree1_queue.push(lhs);
+
+    queue<const TreeNode*> tree2_queue;
+    tree2_queue.push(rhs);
+
+    bool trees_equal = true;
+    while (!tree1_queue.empty() && !tree2_queue.empty()) {
+        const TreeNode* tree1_node = tree1_queue.front();
+        const TreeNode* tree2_node = tree2_queue.front();
+
+        tree1_queue.pop();
+        tree2_queue.pop();
+
+        if (tree1_node != nullptr && tree2_node == nullptr) {
+            trees_equal = false;
+            break;
+        }
+        else if (tree1_node == nullptr && tree2_node != nullptr) {
+            trees_equal = false;
+            break;
+        }
+        else if (tree1_node == nullptr && tree2_node == nullptr) {
+            continue;
+        }
+        else if (tree1_node->val != tree2_node->val) {
+            trees_equal = false;
+            break;
+        }
+
+        tree1_queue.push(tree1_node->left);
+        tree1_queue.push(tree1_node->right);
+
+        tree2_queue.push(tree2_node->left);
+        tree2_queue.push(tree2_node->right);
+    }
+
+    return trees_equal;
 }
 
 void DeleteTree(TreeNode*& tree) {
