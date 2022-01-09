@@ -19,6 +19,8 @@
 // Time: O(2*N) = O(N)
 // Space: O(N)
 
+// TODO Do this in O(1) space
+
 // Key observation is that at every bar, we can only trap a maximum amount of water that is
 // the MIN(max bar to the left, max bar to the right).
 int TrappingRainWater(vector<int> height) {
